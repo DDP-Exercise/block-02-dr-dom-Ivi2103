@@ -11,11 +11,24 @@
  *     For my code to show it's full potential, I just
  *     need one object. Can you help me out?
  *
- *     Bratlsoft - 2026-03-15
+ *     Iva - 2026-03-31
  *******************************************************/
 
 //TODO: Place one object here.
 
+const SAVIOR = {
+    name: "Ivi",
+    age: 20,
+    location: "Hagenberg",
+    hobbies: ["Scripting", "JavaScript", "Coding"],
+    type_of_companion: "unicorn",
+    companion: {
+        name: "Corny",
+        age: 52,
+        color: "rainbow",
+        mood: "nice"
+    }
+}
 /*******************************************************
  *   DO NOT CHANGE THE CODE BELOW!
  *******************************************************/

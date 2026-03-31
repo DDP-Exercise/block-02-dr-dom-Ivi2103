@@ -14,31 +14,90 @@
  *     For that reason, your little program should be written in a way, that it can
  *     scale with the size of the battlefield (3x3, 4x4, ..., nxn).
  *
- *     Bratlsoft - 2026-03-15
+ *     Iva - 2026-03-31
  *******************************************************/
 
-const X = "Savior (X)";
-const O = "Dr. DOM (O)";
+"use strict";
 
-//Some of your epic battles:
-const BATTLEFIELD =
-    [
-        [O, X, O],
-        [X, X, X],
-        [O, O, X],
-    ];
+(function () {
+    const X = "Savior (X)";
+    const O = "Dr. DOM (O)";
+
+    const BATTLEFIELD =
+        [
+            [O, X, O],
+            [X, X, X],
+            [O, O, X],
+        ];
+    const n = BATTLEFIELD.length;
+
+    function checkWinner(board) {
+        // Check Horizontal
+        for (let row = 0; row < n; row++) {
+            const first = board[row][0];
+            if (first === null) continue;
+            if (board[row].every(cell => cell === first)) {
+                return { winner: first, how: `horizontal (row ${row + 1})` };
+            }
+        }
+
+        // Check Vertical
+        for (let col = 0; col < n; col++) {
+            const first = board[0][col];
+            if (first === null) continue;
+            if (board.every(row => row[col] === first)) {
+                return { winner: first, how: `vertical (column ${col + 1})` };
+            }
+        }
+
+        // Check Main Diagonal (top-left → bottom-right)
+        const mainDiagFirst = board[0][0];
+        if (mainDiagFirst !== null) {
+            let i = 0;
+            if (board.every(row => row[i++] === mainDiagFirst)) {
+                return { winner: mainDiagFirst, how: "main diagonal" };
+            }
+        }
+
+        // Check Anti Diagonal (top-right → bottom-left)
+        const antiDiagFirst = board[0][n - 1];
+        if (antiDiagFirst !== null) {
+            let i = 0;
+            if (board.every(row => row[n - 1 - i++] === antiDiagFirst)) {
+                return { winner: antiDiagFirst, how: "anti diagonal" };
+            }
+        }
+
+        return null;
+    }
+
+    const result = checkWinner(BATTLEFIELD);
+
+    if (result) {
+        console.log(`${result.winner} wins via ${result.how}!`);
+    } else {
+        console.log("No winner yet — the battle continues!");
+    }
+})();
 // const BATTLEFIELD =
 //     [
 //         [null, X, X],
 //         [X, O, null],
 //         [O, O, O],
 //     ];
+// Dr. DOM (O) wins via horizontal (row 3)!
+
+
 // const BATTLEFIELD =
 //     [
 //         [O, O, X],
 //         [X, O, X],
 //         [O, X, X],
 //     ];
+
+// Dr. DOM (O) wins via main diagonal
+
+
 // const BATTLEFIELD =
 //     [
 //         [O, X, X],
@@ -63,8 +122,9 @@ const BATTLEFIELD =
 //     ];
 
 //TODO: Check if the battle is over, and if so, announce the winner!
+// Savior (X) wins via horizontal (row 2)!
 
-// Check Horizontal
-// Check Vertical
-// Check Main Diagonal
-// Check Anti Diagonal
+// Check Horizontal passt
+// Check Vertical passt
+// Check Main Diagonal passt
+// Check Anti Diagonal passt
