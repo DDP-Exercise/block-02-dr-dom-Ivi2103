@@ -18,7 +18,7 @@
  *     is watching. We have to do it the right way.
  *     The JavaScript way!
  *
- *     Bratlsoft - 2026-03-15
+ *     Iva - 2026-03-31
  *******************************************************/
 
 /**
@@ -26,6 +26,12 @@
  * First of all, we need to be able to read the text again,
  * without the risk of catching an eye infection!
  */
+
+const paragraphs = document.getElementsByTagName("p");
+for (let p of paragraphs) {
+    p.style.color = "";
+    p.style.backgroundColor = "";
+}
 
 
 
@@ -36,7 +42,9 @@
  * Can't we just remove them all together?
  */
 
-
+const heroList = document.getElementById("heroes_of_the_web");
+const minionList = heroList.previousElementSibling;
+minionList.remove();
 
 
 /**
@@ -44,7 +52,10 @@
  * Wow! You are so powerful! Quick now, set our heroes of the web free!
  * And while at it, let the world know again, that they are back in town!
  */
+heroList.style.visibility = "";
 
+const introParagraph = heroList.previousElementSibling;
+introParagraph.textContent = "Let us introduce to you our list of Web-Heroes:";
 
 
 /**
@@ -53,7 +64,10 @@
  * Do your thing, savior!
  */
 
+document.getElementById("title").textContent = "We, the mighty Heroes of the web, will protect you!";
 
+const message = document.getElementById("message");
+message.textContent = "We care for simplistic design!";
 
 /**
  * TODO 5:
@@ -63,3 +77,11 @@
  * It might sound paranoid. But I can't get rid of the feeling, that he is still here,
  * somewhere in the DOM. I can still feel his Code. Can you identify the source and remove it?
  */
+
+const scripts = document.getElementsByTagName("script");
+for (let script of scripts) {
+    if (script.src.includes("dr.dom.js")) {
+        script.remove();
+        break;
+    }
+}
